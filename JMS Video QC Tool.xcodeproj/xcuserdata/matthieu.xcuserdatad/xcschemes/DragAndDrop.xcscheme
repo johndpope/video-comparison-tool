@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "08F138951B55D85500DB3ABE"
-               BuildableName = "DragAndDrop.app"
-               BlueprintName = "DragAndDrop"
-               ReferencedContainer = "container:DragAndDrop.xcodeproj">
+               BuildableName = "JMS Video QC Tool.app"
+               BlueprintName = "JMS Video QC Tool"
+               ReferencedContainer = "container:JMS Video QC Tool.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "08F138A41B55D85500DB3ABE"
-               BuildableName = "DragAndDropTests.xctest"
-               BlueprintName = "DragAndDropTests"
-               ReferencedContainer = "container:DragAndDrop.xcodeproj">
+               BuildableName = "JMS Video QC Tool.xctest"
+               BlueprintName = "JMS Video QC ToolTests"
+               ReferencedContainer = "container:JMS Video QC Tool.xcodeproj">
             </BuildableReference>
          </TestableReference>
          <TestableReference
@@ -43,9 +43,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "08F138AF1B55D85500DB3ABE"
-               BuildableName = "DragAndDropUITests.xctest"
-               BlueprintName = "DragAndDropUITests"
-               ReferencedContainer = "container:DragAndDrop.xcodeproj">
+               BuildableName = "JMS Video QC Tool.xctest"
+               BlueprintName = "JMS Video QC ToolUITests"
+               ReferencedContainer = "container:JMS Video QC Tool.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -53,9 +53,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "08F138951B55D85500DB3ABE"
-            BuildableName = "DragAndDrop.app"
-            BlueprintName = "DragAndDrop"
-            ReferencedContainer = "container:DragAndDrop.xcodeproj">
+            BuildableName = "JMS Video QC Tool.app"
+            BlueprintName = "JMS Video QC Tool"
+            ReferencedContainer = "container:JMS Video QC Tool.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -76,9 +76,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "08F138951B55D85500DB3ABE"
-            BuildableName = "DragAndDrop.app"
-            BlueprintName = "DragAndDrop"
-            ReferencedContainer = "container:DragAndDrop.xcodeproj">
+            BuildableName = "JMS Video QC Tool.app"
+            BlueprintName = "JMS Video QC Tool"
+            ReferencedContainer = "container:JMS Video QC Tool.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -95,9 +95,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "08F138951B55D85500DB3ABE"
-            BuildableName = "DragAndDrop.app"
-            BlueprintName = "DragAndDrop"
-            ReferencedContainer = "container:DragAndDrop.xcodeproj">
+            BuildableName = "JMS Video QC Tool.app"
+            BlueprintName = "JMS Video QC Tool"
+            ReferencedContainer = "container:JMS Video QC Tool.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
