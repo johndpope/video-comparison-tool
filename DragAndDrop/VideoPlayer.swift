@@ -39,24 +39,7 @@ class VideoPlayer: NSView {
     var delegate : VideoPlayerDelegate?
     
     var endAction : VideoPlayerEndAction = VideoPlayerEndAction.Stop
-    var state : VideoPlayerState = VideoPlayerState.Stopped //{
-//        didSet {
-//            
-//            switch (self.state) {
-//            case .Paused, .Stopped:
-//                
-//                self._actionButton?.action = "play:"
-//                self._actionButton?.target = self
-//                
-//            case .Loading, .Playing:
-//                
-//                self._actionButton?.action = "pause:"
-//                self._actionButton?.target = self
-//                
-//            }
-//            
-//        }
-//    }
+    var state : VideoPlayerState = VideoPlayerState.Stopped
     
     var URL : NSURL? {
         didSet {
@@ -298,8 +281,6 @@ class VideoPlayer: NSView {
     // - Actions
     
     func play(sender: NSButton!) {
-        
-        NSLog("Play")
         
         switch self.state {
             

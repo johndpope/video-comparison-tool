@@ -8,7 +8,7 @@
 
 import Cocoa
 
-class SideBySideComparisonController: NSViewController {
+class SideBySideComparisonController: NSViewController, TimelineControllerDelegate {
 
     var videoPlayer1: VideoPlayer?
     var videoPlayer2: VideoPlayer?
@@ -19,6 +19,7 @@ class SideBySideComparisonController: NSViewController {
     
     override func viewWillAppear() {
        
+        self.initTimeline()
         self.initVideos()
         
     }
@@ -29,7 +30,7 @@ class SideBySideComparisonController: NSViewController {
         
     }
     
-    func initVideos() {
+    internal func initVideos() {
         
         let videoWidth: CGFloat = self.view.frame.width / 2.0
         let videoHeight: CGFloat = self.view.frame.height
@@ -57,6 +58,41 @@ class SideBySideComparisonController: NSViewController {
         
         self.view.addSubview(self.videoPlayer1!)
         self.view.addSubview(self.videoPlayer2!)
+        
+    }
+    
+    
+    internal func initTimeline() {
+     
+        timeline?.delegate = self
+        
+    }
+    
+    
+    func pause() {
+        
+        videoPlayer1?.pause(nil)
+        videoPlayer2?.pause(nil)
+        
+    }
+    
+    func play() {
+        
+        videoPlayer1?.play(nil)
+        videoPlayer2?.play(nil)
+        
+    }
+    
+    func volume(volume: Float) {
+        
+        videoPlayer1?.volume = volume
+        videoPlayer2?.volume = volume
+        
+    }
+    
+    func seek(frame: Float) {
+        
+        NSLog("seek to \(frame)")
         
     }
     

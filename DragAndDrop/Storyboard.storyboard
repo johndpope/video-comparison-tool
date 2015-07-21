@@ -669,17 +669,17 @@
             <objects>
                 <viewController title="Side By Side Comparison" id="pFe-RU-sMt" customClass="SideBySideComparisonController" customModule="JMS_Video_QC_Tool" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" wantsLayer="YES" id="6G3-yb-BSH">
-                        <rect key="frame" x="0.0" y="0.0" width="900" height="400"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="500"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <customView id="Lx5-jN-bb6" customClass="Timeline" customModule="JMS_Video_QC_Tool" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="900" height="73"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
+                                <rect key="frame" x="0.0" y="0.0" width="1000" height="73"/>
+                                <autoresizingMask key="autoresizingMask"/>
                                 <subviews>
                                     <button verticalHuggingPriority="750" id="UFA-XS-fw2">
-                                        <rect key="frame" x="14" y="19" width="67" height="32"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                        <buttonCell key="cell" type="push" title="Play" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="svk-eG-Mhp">
+                                        <rect key="frame" x="8" y="19" width="79" height="32"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <buttonCell key="cell" type="push" title="Pause" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="svk-eG-Mhp">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
@@ -687,8 +687,20 @@
                                             <action selector="pause:" target="Lx5-jN-bb6" id="mBz-dB-aS9"/>
                                         </connections>
                                     </button>
+                                    <button verticalHuggingPriority="750" id="HiG-CI-zUf">
+                                        <rect key="frame" x="909" y="19" width="72" height="32"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <buttonCell key="cell" type="push" title="Mute" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="gq3-ty-w95">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="mute:" target="Lx5-jN-bb6" id="XZy-Hv-p8F"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <connections>
+                                    <outlet property="muteBtn" destination="HiG-CI-zUf" id="DZV-mg-E30"/>
                                     <outlet property="pauseBtn" destination="UFA-XS-fw2" id="mWk-UI-69D"/>
                                 </connections>
                             </customView>
@@ -700,7 +712,7 @@
                 </viewController>
                 <customObject id="obL-dd-H26" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1321" y="804"/>
+            <point key="canvasLocation" x="1299" y="829"/>
         </scene>
         <!--Drag And Drop Controller-->
         <scene sceneID="GV6-ht-ivm">

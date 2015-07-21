@@ -8,14 +8,29 @@
 
 import Cocoa
 
+// Timeline protocol
+protocol TimelineControllerDelegate {
+    
+    func pause()
+    func play()
+    func volume(volume: Float)
+    func seek(frame: Float)
+    
+}
+
 class Timeline: NSView {
     
-    
+    // Outlets
     @IBOutlet weak var pauseBtn: NSButton?
+    @IBOutlet weak var muteBtn: NSButton?
+    
+    var delegate: TimelineControllerDelegate?
     
     
     // private
-    private var _isPlaying: Bool = false
+    private var _isPlaying: Bool = true
+    private var _isMuted: Bool = false
+    private var _volume: Float = 1.0
     
 
     override func drawRect(dirtyRect: NSRect) {
@@ -36,29 +51,39 @@ class Timeline: NSView {
     
     @IBAction func pause(sender: NSButton) {
         
-        NSLog("click action")
-        
         // Action pause
         if _isPlaying {
             
-            NSLog("Pause")
-            
             _isPlaying = false
-            
             pauseBtn?.title = "Play"
+            self.delegate?.pause()
             
         } else {
             
-            NSLog("Play")
-            
             _isPlaying = true
-            
             pauseBtn?.title = "Pause"
+            self.delegate?.play()
             
         }
         
-        
     }
     
+    @IBAction func mute(sender: NSButton) {
+        
+        if _isMuted {
+            
+            _isMuted = false
+            muteBtn?.title = "Mute"
+            self.delegate?.volume(1.0)
+            
+        } else {
+            
+            _isMuted = true
+            muteBtn?.title = "Unmute"
+            self.delegate?.volume(0.0)
+            
+        }
+        
+    }
     
 }
