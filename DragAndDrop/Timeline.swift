@@ -24,6 +24,11 @@ class Timeline: NSView {
     @IBOutlet weak var pauseBtn: NSButton?
     @IBOutlet weak var muteBtn: NSButton?
     
+    @IBOutlet weak var seekBar: NSSlider?
+    @IBOutlet weak var totalTime: NSTextField?
+    @IBOutlet weak var currentTime: NSTextField?
+    
+    
     var delegate: TimelineControllerDelegate?
     
     
@@ -45,8 +50,57 @@ class Timeline: NSView {
     }
 
     required init?(coder: NSCoder) {
+        
         super.init(coder: coder)
+        
+        self.initElements()
+
+        self.wantsLayer = true
+        
     }
+    
+    
+    override func makeBackingLayer() -> CALayer {
+        
+        self.layer = CALayer()
+        return self.layer!
+        
+    }
+    
+    
+    // Init elements
+    internal func initElements() {
+        
+        NSLog("initElements")
+        
+    }
+    
+    // Init seek bar
+    internal func initSeekBar() {
+        
+        NSLog("init seek bar")
+        
+        self.seekBar?.maxValue = 30.0
+        self.seekBar?.minValue = 0.0
+        self.seekBar?.cell?.floatValue = 25.0
+        
+    }
+    
+    
+    
+    func setDuration(minutes: Int64, seconds: Int64) {
+        
+        self.totalTime?.stringValue = Utils.padZeros(minutes) + ":" + Utils.padZeros(seconds)
+        
+    }
+    
+    
+    func setCurrentTime(minutes: Int64, seconds: Int64) {
+        
+        self.currentTime?.stringValue = Utils.padZeros(minutes) + ":" + Utils.padZeros(seconds)
+        
+    }
+    
     
     
     @IBAction func pause(sender: NSButton) {

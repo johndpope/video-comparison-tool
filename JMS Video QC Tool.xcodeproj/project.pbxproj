@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		080AC3C11B5D9337000BD2E1 /* SideBySideComparisonController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 080AC3C01B5D9337000BD2E1 /* SideBySideComparisonController.swift */; };
 		080AC3C31B5DBD84000BD2E1 /* Timeline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 080AC3C21B5DBD84000BD2E1 /* Timeline.swift */; };
+		080AC3C71B5EE5FE000BD2E1 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 080AC3C61B5EE5FE000BD2E1 /* Utils.swift */; };
 		084F3AB61B597004003EB4AB /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 084F3AB51B597004003EB4AB /* Storyboard.storyboard */; };
 		084F3AF31B597734003EB4AB /* DragAndDropController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 084F3AF21B597734003EB4AB /* DragAndDropController.swift */; };
 		084F3AF71B59A89F003EB4AB /* VideoPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 084F3AF61B59A89F003EB4AB /* VideoPlayer.swift */; };
@@ -39,6 +40,7 @@
 /* Begin PBXFileReference section */
 		080AC3C01B5D9337000BD2E1 /* SideBySideComparisonController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideBySideComparisonController.swift; sourceTree = "<group>"; };
 		080AC3C21B5DBD84000BD2E1 /* Timeline.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Timeline.swift; sourceTree = "<group>"; };
+		080AC3C61B5EE5FE000BD2E1 /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		084F3AB51B597004003EB4AB /* Storyboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Storyboard.storyboard; sourceTree = "<group>"; };
 		084F3AF21B597734003EB4AB /* DragAndDropController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DragAndDropController.swift; sourceTree = "<group>"; };
 		084F3AF61B59A89F003EB4AB /* VideoPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoPlayer.swift; sourceTree = "<group>"; };
@@ -90,6 +92,7 @@
 				080AC3C01B5D9337000BD2E1 /* SideBySideComparisonController.swift */,
 				084F3AF61B59A89F003EB4AB /* VideoPlayer.swift */,
 				080AC3C21B5DBD84000BD2E1 /* Timeline.swift */,
+				080AC3C61B5EE5FE000BD2E1 /* Utils.swift */,
 			);
 			name = GUI;
 			sourceTree = "<group>";
@@ -286,6 +289,7 @@
 				08F138C31B55D8AD00DB3ABE /* DragAndDropZone.swift in Sources */,
 				08F1389A1B55D85500DB3ABE /* AppDelegate.swift in Sources */,
 				080AC3C11B5D9337000BD2E1 /* SideBySideComparisonController.swift in Sources */,
+				080AC3C71B5EE5FE000BD2E1 /* Utils.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

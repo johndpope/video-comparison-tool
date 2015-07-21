@@ -8,7 +8,7 @@
 
 import Cocoa
 
-class SideBySideComparisonController: NSViewController, TimelineControllerDelegate {
+class SideBySideComparisonController: NSViewController, TimelineControllerDelegate, VideoPlayerDelegate {
 
     var videoPlayer1: VideoPlayer?
     var videoPlayer2: VideoPlayer?
@@ -42,6 +42,7 @@ class SideBySideComparisonController: NSViewController, TimelineControllerDelega
         videoPlayer1!.frame = videoFrame
         videoPlayer1!.URL = NSURL.fileURLWithPath(self.videos[0])
         videoPlayer1!.videoTitle = self.videos[0]
+        videoPlayer1!.delegate = self
         videoPlayer1!.videoIndex = 0
         videoPlayer1!.totalVideos = 2
         videoPlayer1!.endAction = VideoPlayerEndAction.Stop
@@ -51,6 +52,7 @@ class SideBySideComparisonController: NSViewController, TimelineControllerDelega
         videoPlayer2!.frame = videoFrame2
         videoPlayer2!.URL = NSURL.fileURLWithPath(self.videos[1])
         videoPlayer2!.videoTitle = self.videos[1]
+        videoPlayer2!.delegate = self
         videoPlayer2!.videoIndex = 1
         videoPlayer2!.totalVideos = 2
         videoPlayer2!.endAction = VideoPlayerEndAction.Stop
@@ -69,6 +71,7 @@ class SideBySideComparisonController: NSViewController, TimelineControllerDelega
     }
     
     
+    // Timeline protocol
     func pause() {
         
         videoPlayer1?.pause(nil)
@@ -95,5 +98,42 @@ class SideBySideComparisonController: NSViewController, TimelineControllerDelega
         NSLog("seek to \(frame)")
         
     }
+    
+    
+    // Videos protocol
+    
+    // Video changed state
+    func videoPlayer(videoPlayer: VideoPlayer, changedState: VideoPlayerState) {
+        
+        switch changedState {
+            
+        case .Loaded:
+            self.timeline?.setDuration(videoPlayer.videoDuration.minutes, seconds: videoPlayer.videoDuration.seconds)
+            break
+            
+        case .Stopped:
+            
+            break
+            
+        case .Playing:
+            
+            NSLog("Playing")
+            self.timeline?.setCurrentTime(videoPlayer.currentTime.minutes, seconds: videoPlayer.currentTime.seconds)
+            
+            break
+            
+        default:
+            break
+            
+        }
+        
+    }
+    
+    // Video Error
+    func videoPlayer(videoPlayer: VideoPlayer, encounteredError: NSError) {
+        NSLog("video error \(videoPlayer) :: \(encounteredError)")
+    }
+    
+    
     
 }

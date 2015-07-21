@@ -8,6 +8,7 @@
 
 import AVFoundation
 import CoreMedia
+import Foundation
 
 protocol VideoPlayerDelegate {
     
@@ -26,7 +27,7 @@ enum VideoPlayerEndAction: Int {
 enum VideoPlayerState: Int {
     
     case Stopped = 1
-    case Loading, Playing, Paused
+    case Loading, Loaded, Playing, Paused
     
 }
 
@@ -53,22 +54,42 @@ class VideoPlayer: NSView {
     
     var volume : Float {
         didSet {
-            
             if (self._player != nil) {
-                
                 self._player!.volume = self.volume
-                
             }
-            
+        }
+    }
+    
+    var videoItem : AVPlayerItem {
+        get {
+            return (self._player?.currentItem!)!
+        }
+    }
+    
+    // Video duration
+    var videoDuration : (minutes: Int64, seconds: Int64) {
+        get {
+            let seconds : CGFloat = CGFloat(Int64(self.videoItem.duration.value) / Int64(self.videoItem.duration.timescale))
+            let fullSeconds : Int64 = Int64(floor(seconds))
+            return Utils.secondsToMinSec(fullSeconds)
+        }
+    }
+    
+    // Video current time
+    var currentTime : (minutes: Int64, seconds: Int64) {
+        get {
+            let seconds : CGFloat = CGFloat(Int64(self.videoItem.currentTime().value) / Int64(self.videoItem.currentTime().timescale))
+            let fullSeconds : Int64 = Int64(floor(seconds))
+            return Utils.secondsToMinSec(fullSeconds)
         }
     }
     
     // Private
     
-    var _player : AVPlayer?
-    var _playerLayer : AVPlayerLayer?
-    var _isBufferEmpty : Bool = false
-    var _isLoaded : Bool = false
+    internal var _player : AVPlayer?
+    internal var _playerLayer : AVPlayerLayer?
+    internal var _isBufferEmpty : Bool = false
+    internal var _isLoaded : Bool = false
     
     // - Initializing
     
@@ -128,6 +149,12 @@ class VideoPlayer: NSView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    
+    override func resizeSubviewsWithOldSize(oldSize: NSSize) {
+        NSLog("resizeSubviewsWithOldSize \(oldSize)")
+    }
+    
     
     
     // - Setup Player
@@ -242,7 +269,9 @@ class VideoPlayer: NSView {
     override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
         let obj = object as? NSObject
         if obj == self._player {
+            
             if keyPath == "rate" {
+                
                 let rate = self._player?.rate
                 if !self._isLoaded {
                     self._setStateNotifyingDelegate(VideoPlayerState.Loading)
@@ -255,25 +284,36 @@ class VideoPlayer: NSView {
                         self._setStateNotifyingDelegate(VideoPlayerState.Paused)
                     }
                 }
+                
             }
+            
         } else if obj == self._player?.currentItem {
+            
             if keyPath == "status" {
+                
                 let status : AVPlayerItemStatus? = self._player?.currentItem?.status
                 if status == AVPlayerItemStatus.Failed {
+                    
                     self._destroyPlayer()
                     self.delegate?.videoPlayer(self, encounteredError: NSError(domain: "VideoPlayer", code: 1, userInfo: [NSLocalizedDescriptionKey : "An unknown error occured."]))
+                    
                 } else if status == AVPlayerItemStatus.ReadyToPlay {
+                    
+                    // Notify video loaded
+                    self._setStateNotifyingDelegate(VideoPlayerState.Loaded)
+                
                     self._isLoaded = true
                     self._setStateNotifyingDelegate(VideoPlayerState.Playing)
+                    
                 }
+                
             } else if keyPath == "playbackBufferEmpty" {
+                
                 let empty : Bool? = self._player?.currentItem?.playbackBufferEmpty
-                if (empty != nil) {
-                    self._isBufferEmpty = true
-                } else {
-                    self._isBufferEmpty = false
-                }
+                self._isBufferEmpty = empty != nil
+
             }
+            
         }
     }
     
