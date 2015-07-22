@@ -7,6 +7,7 @@
 //
 
 import Cocoa
+import QuartzCore
 
 class SideBySideComparisonController: NSViewController, TimelineControllerDelegate, VideoPlayerDelegate {
 
@@ -16,6 +17,10 @@ class SideBySideComparisonController: NSViewController, TimelineControllerDelega
     @IBOutlet weak var timeline: Timeline?
     
     var videos: Array = [String]()
+    
+    
+    private var displayLink: CVDisplayLink?
+    
     
     override func viewWillAppear() {
        
@@ -46,7 +51,7 @@ class SideBySideComparisonController: NSViewController, TimelineControllerDelega
         videoPlayer1!.videoIndex = 0
         videoPlayer1!.totalVideos = 2
         videoPlayer1!.endAction = VideoPlayerEndAction.Stop
-        videoPlayer1!.play(nil)
+        videoPlayer1!.build()
         
         videoPlayer2 = VideoPlayer(frame: videoFrame2)
         videoPlayer2!.frame = videoFrame2
@@ -56,7 +61,7 @@ class SideBySideComparisonController: NSViewController, TimelineControllerDelega
         videoPlayer2!.videoIndex = 1
         videoPlayer2!.totalVideos = 2
         videoPlayer2!.endAction = VideoPlayerEndAction.Stop
-        videoPlayer2!.play(nil)
+        videoPlayer2!.build()
         
         self.view.addSubview(self.videoPlayer1!)
         self.view.addSubview(self.videoPlayer2!)
@@ -93,9 +98,10 @@ class SideBySideComparisonController: NSViewController, TimelineControllerDelega
         
     }
     
-    func seek(frame: Float) {
+    func seek(time: Float64) {
         
-        NSLog("seek to \(frame)")
+        videoPlayer1?.seek(time)
+        videoPlayer2?.seek(time)
         
     }
     
@@ -108,7 +114,8 @@ class SideBySideComparisonController: NSViewController, TimelineControllerDelega
         switch changedState {
             
         case .Loaded:
-            self.timeline?.setDuration(videoPlayer.videoDuration.minutes, seconds: videoPlayer.videoDuration.seconds)
+            self.timeline?.setDuration(videoPlayer.videoDurationReadable.minutes, seconds: videoPlayer.videoDurationReadable.seconds)
+            self.timeline?.seekBarMaxValue = videoPlayer.videoDuration
             break
             
         case .Stopped:
@@ -117,8 +124,8 @@ class SideBySideComparisonController: NSViewController, TimelineControllerDelega
             
         case .Playing:
             
-            NSLog("Playing")
-            self.timeline?.setCurrentTime(videoPlayer.currentTime.minutes, seconds: videoPlayer.currentTime.seconds)
+            self.timeline?.setCurrentTime(videoPlayer.currentTimeReadable.minutes, seconds: videoPlayer.currentTimeReadable.seconds)
+            self.timeline?.seek(videoPlayer.currentTime)
             
             break
             

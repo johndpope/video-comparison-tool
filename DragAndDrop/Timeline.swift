@@ -14,7 +14,7 @@ protocol TimelineControllerDelegate {
     func pause()
     func play()
     func volume(volume: Float)
-    func seek(frame: Float)
+    func seek(time: Float64)
     
 }
 
@@ -32,8 +32,14 @@ class Timeline: NSView {
     var delegate: TimelineControllerDelegate?
     
     
+    var seekBarMaxValue: Int64? {
+        didSet {
+            self.seekBar?.maxValue = Double(self.seekBarMaxValue!)
+        }
+    }
+    
     // private
-    private var _isPlaying: Bool = true
+    private var _isPlaying: Bool = false
     private var _isMuted: Bool = false
     private var _volume: Float = 1.0
     
@@ -71,18 +77,15 @@ class Timeline: NSView {
     // Init elements
     internal func initElements() {
         
-        NSLog("initElements")
+        self.initSeekBar()
         
     }
     
     // Init seek bar
     internal func initSeekBar() {
         
-        NSLog("init seek bar")
-        
-        self.seekBar?.maxValue = 30.0
         self.seekBar?.minValue = 0.0
-        self.seekBar?.cell?.floatValue = 25.0
+        self.seekBar?.cell?.floatValue = 0.0
         
     }
     
@@ -101,6 +104,11 @@ class Timeline: NSView {
         
     }
     
+    func seek(time: Int64) {
+        
+        self.seekBar?.cell?.integerValue = Int(time)
+        
+    }
     
     
     @IBAction func pause(sender: NSButton) {
@@ -138,6 +146,12 @@ class Timeline: NSView {
             
         }
         
+    }
+    
+    @IBAction func seekTime(sender: AnyObject) {
+        
+        //let event: NSEvent = NSApplication.sharedApplication().currentEvent!
+        self.delegate?.seek(Float64((self.seekBar?.cell?.floatValue)!))
     }
     
 }

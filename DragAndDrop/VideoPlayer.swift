@@ -67,7 +67,7 @@ class VideoPlayer: NSView {
     }
     
     // Video duration
-    var videoDuration : (minutes: Int64, seconds: Int64) {
+    var videoDurationReadable : (minutes: Int64, seconds: Int64) {
         get {
             let seconds : CGFloat = CGFloat(Int64(self.videoItem.duration.value) / Int64(self.videoItem.duration.timescale))
             let fullSeconds : Int64 = Int64(floor(seconds))
@@ -75,12 +75,26 @@ class VideoPlayer: NSView {
         }
     }
     
+    var videoDuration : Int64 {
+        get {
+            let seconds : CGFloat = CGFloat(Int64(self.videoItem.duration.value) / Int64(self.videoItem.duration.timescale))
+            return Int64(floor(seconds))
+        }
+    }
+    
     // Video current time
-    var currentTime : (minutes: Int64, seconds: Int64) {
+    var currentTimeReadable : (minutes: Int64, seconds: Int64) {
         get {
             let seconds : CGFloat = CGFloat(Int64(self.videoItem.currentTime().value) / Int64(self.videoItem.currentTime().timescale))
             let fullSeconds : Int64 = Int64(floor(seconds))
             return Utils.secondsToMinSec(fullSeconds)
+        }
+    }
+    
+    var currentTime : Int64 {
+        get {
+            let seconds : CGFloat = CGFloat(Int64(self.videoItem.currentTime().value) / Int64(self.videoItem.currentTime().timescale))
+            return Int64(floor(seconds))
         }
     }
     
@@ -151,15 +165,21 @@ class VideoPlayer: NSView {
     }
     
     
-    override func resizeSubviewsWithOldSize(oldSize: NSSize) {
-        NSLog("resizeSubviewsWithOldSize \(oldSize)")
+    // Public functions
+    
+    func build() {
+        
+        self._setupPlayer()
+        self._showVideoTitle()
+        
     }
     
     
     
-    // - Setup Player
+    // PRIVATE FUNCTIONS
     
-    func _setupPlayer() {
+    // Setup Player
+    internal func _setupPlayer() {
         
         if !(self.URL != nil) {
             return;
@@ -180,15 +200,13 @@ class VideoPlayer: NSView {
         
         self.layer!.addSublayer(playerLayer)
         self._playerLayer = playerLayer
-
-        // Play
-        player.play()
         
         self._addObservers()
         
     }
     
-    func _destroyPlayer() {
+    // Destroy Player
+    internal func _destroyPlayer() {
         
         self._removeObservers();
         
@@ -201,7 +219,8 @@ class VideoPlayer: NSView {
         
     }
     
-    func _showVideoTitle() {
+    // Show video title
+    internal func _showVideoTitle() {
         
         let title : NSTextField = NSTextField()
         title.stringValue = self.videoTitle
@@ -210,10 +229,19 @@ class VideoPlayer: NSView {
         title.bordered = false
         title.textColor = NSColor.blackColor()
         title.alignment = NSTextAlignment.Center
-        title.frame = CGRectMake(0, self.frame.height - 20.0, self.frame.width, 20.0)
+        title.frame = CGRectMake(0, self.frame.height - 40.0, self.frame.width, 20.0)
         self.addSubview(title)
         
     }
+    
+    // Set State & tell delegate
+    internal func _setStateNotifyingDelegate(state: VideoPlayerState) {
+        
+        self.state = state
+        self.delegate?.videoPlayer(self, changedState: state)
+        
+    }
+    
     
     // - Player Notifications
     
@@ -242,7 +270,7 @@ class VideoPlayer: NSView {
     
     // - Observers
     
-    func _addObservers() {
+    internal func _addObservers() {
         
         let options = NSKeyValueObservingOptions([.New, .Old])
         self._player?.addObserver(self, forKeyPath: "rate", options: options, context: nil)
@@ -255,8 +283,8 @@ class VideoPlayer: NSView {
         
     }
     
-    func _removeObservers() {
-        
+    internal func _removeObservers() {
+       
         self._player?.removeObserver(self, forKeyPath: "rate")
         
         self._player?.currentItem?.removeObserver(self, forKeyPath: "playbackBufferEmpty")
@@ -299,11 +327,10 @@ class VideoPlayer: NSView {
                     
                 } else if status == AVPlayerItemStatus.ReadyToPlay {
                     
+                    self._isLoaded = true
+                    
                     // Notify video loaded
                     self._setStateNotifyingDelegate(VideoPlayerState.Loaded)
-                
-                    self._isLoaded = true
-                    self._setStateNotifyingDelegate(VideoPlayerState.Playing)
                     
                 }
                 
@@ -324,14 +351,22 @@ class VideoPlayer: NSView {
         
         switch self.state {
             
-        case VideoPlayerState.Paused:
+        case VideoPlayerState.Paused, VideoPlayerState.Loaded:
             
+            // Play
             self._player?.play()
+            
+            // Add periodic time observer
+            let interval : CMTime = CMTimeMakeWithSeconds(1.0, 1)
+            self._player?.addPeriodicTimeObserverForInterval(interval, queue: nil, usingBlock: { (time: CMTime) -> Void in
+                
+                self.delegate?.videoPlayer(self, changedState: VideoPlayerState.Playing)
+                
+            })
             
         case VideoPlayerState.Stopped:
             
-            self._setupPlayer()
-            self._showVideoTitle()
+            self.build()
             
         default:
             break
@@ -347,7 +382,8 @@ class VideoPlayer: NSView {
         case VideoPlayerState.Playing, VideoPlayerState.Loading:
             
             self._player?.pause()
-            
+            self._setStateNotifyingDelegate(VideoPlayerState.Paused)
+
         default:
             break
             
@@ -367,12 +403,9 @@ class VideoPlayer: NSView {
         
     }
     
-    // - Getters & Setters
-    
-    func _setStateNotifyingDelegate(state: VideoPlayerState) {
+    func seek(time: Float64) {
         
-        self.state = state
-        self.delegate?.videoPlayer(self, changedState: state)
+        self._player?.seekToTime(CMTimeMakeWithSeconds(time, 1))
         
     }
     

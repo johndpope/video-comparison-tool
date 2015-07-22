@@ -669,17 +669,17 @@
             <objects>
                 <viewController title="Side By Side Comparison" id="pFe-RU-sMt" customClass="SideBySideComparisonController" customModule="JMS_Video_QC_Tool" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" wantsLayer="YES" id="6G3-yb-BSH">
-                        <rect key="frame" x="0.0" y="0.0" width="1000" height="500"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1400" height="600"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <customView id="Lx5-jN-bb6" customClass="Timeline" customModule="JMS_Video_QC_Tool" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="1000" height="73"/>
+                                <rect key="frame" x="0.0" y="0.0" width="1400" height="73"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <subviews>
                                     <button verticalHuggingPriority="750" id="UFA-XS-fw2">
-                                        <rect key="frame" x="8" y="19" width="79" height="32"/>
+                                        <rect key="frame" x="14" y="19" width="67" height="32"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <buttonCell key="cell" type="push" title="Pause" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="svk-eG-Mhp">
+                                        <buttonCell key="cell" type="push" title="Play" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="svk-eG-Mhp">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
@@ -688,7 +688,7 @@
                                         </connections>
                                     </button>
                                     <button verticalHuggingPriority="750" id="HiG-CI-zUf">
-                                        <rect key="frame" x="905" y="19" width="85" height="32"/>
+                                        <rect key="frame" x="1301" y="19" width="85" height="32"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <buttonCell key="cell" type="push" title="Mute" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="gq3-ty-w95">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -705,20 +705,16 @@
                                         <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <font key="titleFont" metaFont="system"/>
                                     </box>
-                                    <box horizontalHuggingPriority="750" title="Box" boxType="separator" titlePosition="noTitle" id="gfv-q1-3pR">
-                                        <rect key="frame" x="891" y="0.0" width="5" height="73"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                        <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
-                                        <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        <font key="titleFont" metaFont="system"/>
-                                    </box>
                                     <slider verticalHuggingPriority="750" id="Pha-3V-BQL">
-                                        <rect key="frame" x="161" y="26" width="664" height="20"/>
+                                        <rect key="frame" x="161" y="26" width="1042" height="20"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                        <sliderCell key="cell" alignment="left" maxValue="100" doubleValue="32.270997317512538" tickMarkPosition="above" sliderType="linear" id="iqr-sJ-UuS"/>
+                                        <sliderCell key="cell" state="on" alignment="left" maxValue="100" tickMarkPosition="above" sliderType="linear" id="iqr-sJ-UuS"/>
+                                        <connections>
+                                            <action selector="seekTime:" target="Lx5-jN-bb6" id="cz1-Mk-Ozm"/>
+                                        </connections>
                                     </slider>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="vIg-MX-CQs">
-                                        <rect key="frame" x="843" y="28" width="39" height="17"/>
+                                        <rect key="frame" x="1229" y="28" width="39" height="17"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="00:00" id="9vC-7t-9vY">
                                             <font key="font" metaFont="system"/>
@@ -735,6 +731,20 @@
                                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
                                     </textField>
+                                    <box verticalHuggingPriority="750" title="Box" boxType="separator" titlePosition="noTitle" id="EjZ-OP-UI6">
+                                        <rect key="frame" x="-1" y="70" width="1401" height="5"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
+                                        <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <font key="titleFont" metaFont="system"/>
+                                    </box>
+                                    <box horizontalHuggingPriority="750" title="Box" boxType="separator" titlePosition="noTitle" id="gfv-q1-3pR">
+                                        <rect key="frame" x="1282" y="0.0" width="5" height="73"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
+                                        <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <font key="titleFont" metaFont="system"/>
+                                    </box>
                                 </subviews>
                                 <connections>
                                     <outlet property="currentTime" destination="beA-ib-ciQ" id="SfJ-GH-zS0"/>
@@ -752,7 +762,7 @@
                 </viewController>
                 <customObject id="obL-dd-H26" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1299" y="829"/>
+            <point key="canvasLocation" x="607" y="1358"/>
         </scene>
         <!--Drag And Drop Controller-->
         <scene sceneID="GV6-ht-ivm">
@@ -800,7 +810,7 @@
                 </viewController>
                 <customObject id="lxm-M0-cDp" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="507" y="803.5"/>
+            <point key="canvasLocation" x="682" y="813.5"/>
         </scene>
     </scenes>
 </document>
