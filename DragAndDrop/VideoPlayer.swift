@@ -77,24 +77,28 @@ class VideoPlayer: NSView {
     
     var videoDuration : Int64 {
         get {
-            let seconds : CGFloat = CGFloat(Int64(self.videoItem.duration.value) / Int64(self.videoItem.duration.timescale))
-            return Int64(floor(seconds))
+            let centiSeconds : CGFloat = CGFloat(Int64(self.videoItem.duration.value) / Int64(self.videoItem.duration.timescale / 100))
+            return Int64(floor(centiSeconds))
         }
     }
     
     // Video current time
     var currentTimeReadable : (minutes: Int64, seconds: Int64) {
         get {
-            let seconds : CGFloat = CGFloat(Int64(self.videoItem.currentTime().value) / Int64(self.videoItem.currentTime().timescale))
-            let fullSeconds : Int64 = Int64(floor(seconds))
-            return Utils.secondsToMinSec(fullSeconds)
+            let centiSeconds : CGFloat = CGFloat(Int64(self.videoItem.currentTime().value) / Int64(self.videoItem.currentTime().timescale))
+            let fullCentiSeconds : Int64 = Int64(floor(centiSeconds))
+            return Utils.secondsToMinSec(fullCentiSeconds)
         }
     }
     
     var currentTime : Int64 {
         get {
-            let seconds : CGFloat = CGFloat(Int64(self.videoItem.currentTime().value) / Int64(self.videoItem.currentTime().timescale))
-            return Int64(floor(seconds))
+            if Int64(self.videoItem.currentTime().value) == 0 {
+                return 0
+            }
+            
+            let centiSeconds : CGFloat = CGFloat(Int64(self.videoItem.currentTime().value) / Int64(self.videoItem.currentTime().timescale / 100))
+            return Int64(floor(centiSeconds))
         }
     }
     
@@ -139,9 +143,7 @@ class VideoPlayer: NSView {
     }
     
     override func updateLayer() {
-        
         NSLog("updateLayer")
-        
     }
     
     // - Layout
@@ -168,10 +170,8 @@ class VideoPlayer: NSView {
     // Public functions
     
     func build() {
-        
         self._setupPlayer()
         self._showVideoTitle()
-        
     }
     
     
@@ -255,15 +255,13 @@ class VideoPlayer: NSView {
     func playerPlayedToEnd(notification: NSNotification) {
         
         switch self.endAction {
-            
-        case .Loop:
-            
-            self._player?.currentItem?.seekToTime(kCMTimeZero)
-            
-        case .Stop:
-            
-            self._destroyPlayer()
-            
+            case .Loop:
+                self._player?.currentItem?.seekToTime(kCMTimeZero)
+                break
+                
+            case .Stop:
+
+                break
         }
         
     }
@@ -320,25 +318,20 @@ class VideoPlayer: NSView {
             if keyPath == "status" {
                 
                 let status : AVPlayerItemStatus? = self._player?.currentItem?.status
+                
                 if status == AVPlayerItemStatus.Failed {
-                    
                     self._destroyPlayer()
                     self.delegate?.videoPlayer(self, encounteredError: NSError(domain: "VideoPlayer", code: 1, userInfo: [NSLocalizedDescriptionKey : "An unknown error occured."]))
-                    
                 } else if status == AVPlayerItemStatus.ReadyToPlay {
-                    
                     self._isLoaded = true
                     
                     // Notify video loaded
                     self._setStateNotifyingDelegate(VideoPlayerState.Loaded)
-                    
                 }
                 
             } else if keyPath == "playbackBufferEmpty" {
-                
                 let empty : Bool? = self._player?.currentItem?.playbackBufferEmpty
                 self._isBufferEmpty = empty != nil
-
             }
             
         }
@@ -357,7 +350,7 @@ class VideoPlayer: NSView {
             self._player?.play()
             
             // Add periodic time observer
-            let interval : CMTime = CMTimeMakeWithSeconds(1.0, 1)
+            let interval : CMTime = CMTimeMake(1, 100)
             self._player?.addPeriodicTimeObserverForInterval(interval, queue: nil, usingBlock: { (time: CMTime) -> Void in
                 
                 self.delegate?.videoPlayer(self, changedState: VideoPlayerState.Playing)
@@ -392,21 +385,17 @@ class VideoPlayer: NSView {
     }
     
     func stop() {
-        
         if (self.state == VideoPlayerState.Stopped) {
-            
             return
-            
         }
         
         self._destroyPlayer()
-        
     }
     
     func seek(time: Float64) {
+        let cmtime : CMTime = CMTimeMake(Int64(time), 100)
         
-        self._player?.seekToTime(CMTimeMakeWithSeconds(time, 1))
-        
+        self._player?.seekToTime(cmtime)
     }
     
 }

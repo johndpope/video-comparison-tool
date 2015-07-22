@@ -18,7 +18,7 @@ class Utils {
     */
     static func secondsToMinSec(totalSeconds: Int64) -> (minutes: Int64, seconds: Int64) {
         
-        let calcMinutes: Int64 = totalSeconds / 60
+        let calcMinutes: Int64 = (totalSeconds / 100) / 60
         let calcSeconds: Int64 = totalSeconds - calcMinutes * 60
         
         return (minutes: calcMinutes, seconds: calcSeconds)

@@ -18,21 +18,16 @@ class SideBySideComparisonController: NSViewController, TimelineControllerDelega
     
     var videos: Array = [String]()
     
-    
     private var displayLink: CVDisplayLink?
     
     
     override func viewWillAppear() {
-       
         self.initTimeline()
         self.initVideos()
-        
     }
     
     override func viewDidLoad() {
-        
         super.viewDidLoad()
-        
     }
     
     internal func initVideos() {
@@ -70,39 +65,29 @@ class SideBySideComparisonController: NSViewController, TimelineControllerDelega
     
     
     internal func initTimeline() {
-     
         timeline?.delegate = self
-        
     }
     
     
     // Timeline protocol
     func pause() {
-        
         videoPlayer1?.pause(nil)
         videoPlayer2?.pause(nil)
-        
     }
     
     func play() {
-        
         videoPlayer1?.play(nil)
         videoPlayer2?.play(nil)
-        
     }
     
     func volume(volume: Float) {
-        
         videoPlayer1?.volume = volume
         videoPlayer2?.volume = volume
-        
     }
     
     func seek(time: Float64) {
-        
         videoPlayer1?.seek(time)
         videoPlayer2?.seek(time)
-        
     }
     
     
@@ -140,7 +125,5 @@ class SideBySideComparisonController: NSViewController, TimelineControllerDelega
     func videoPlayer(videoPlayer: VideoPlayer, encounteredError: NSError) {
         NSLog("video error \(videoPlayer) :: \(encounteredError)")
     }
-    
-    
     
 }
