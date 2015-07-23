@@ -39,6 +39,12 @@ class Timeline: NSView {
         }
     }
     
+    var isPlaying: Bool {
+        get {
+            return _isPlaying
+        }
+    }
+    
     // PRIVATE VARS
     private var _isPlaying: Bool = false
     private var _isMuted: Bool = false
@@ -101,7 +107,7 @@ class Timeline: NSView {
     
     // ACTIONS
     
-    @IBAction func pause(sender: NSButton) {
+    @IBAction func pause(sender: NSButton?) {
         
         if _isPlaying {
             self.delegate?.pause()

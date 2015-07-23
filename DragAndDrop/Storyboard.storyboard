@@ -669,7 +669,7 @@
             <objects>
                 <viewController title="Side By Side Comparison" id="pFe-RU-sMt" customClass="SideBySideComparisonController" customModule="JMS_Video_QC_Tool" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" wantsLayer="YES" id="6G3-yb-BSH">
-                        <rect key="frame" x="0.0" y="0.0" width="1400" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1400" height="800"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <customView id="Lx5-jN-bb6" customClass="Timeline" customModule="JMS_Video_QC_Tool" customModuleProvider="target">
@@ -762,7 +762,7 @@
                 </viewController>
                 <customObject id="obL-dd-H26" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="607" y="1358"/>
+            <point key="canvasLocation" x="682" y="1514"/>
         </scene>
         <!--Drag And Drop Controller-->
         <scene sceneID="GV6-ht-ivm">
@@ -780,7 +780,7 @@
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
-                                    <segue destination="pFe-RU-sMt" kind="show" identifier="sideBySideComparison" id="nzv-c9-N7w"/>
+                                    <segue destination="pFe-RU-sMt" kind="show" identifier="SideBySideMode" id="nzv-c9-N7w"/>
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" id="SPN-ge-5ze">
@@ -790,6 +790,9 @@
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
+                                <connections>
+                                    <segue destination="pFe-RU-sMt" kind="show" identifier="SliderMode" id="Dp9-U8-5Hs"/>
+                                </connections>
                             </button>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="MlE-xt-WWG">
                                 <rect key="frame" x="109" y="122" width="263" height="24"/>
@@ -813,4 +816,7 @@
             <point key="canvasLocation" x="682" y="813.5"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="Dp9-U8-5Hs"/>
+    </inferredMetricsTieBreakers>
 </document>

@@ -167,13 +167,37 @@ class VideoPlayer: NSView {
     }
     
     
-    // Public functions
+    // PUBLIC FUNCTIONS
     
-    func build() {
+    func build(mode: QualityControlMode = QualityControlMode.SideBySide) {
         self._setupPlayer()
         self._showVideoTitle()
+        
+        // If slider mode
+        if mode == QualityControlMode.Slider {
+            // Mask
+            self.layer!.mask = CAShapeLayer()
+            // Init mask frame
+            self.updateMask(50)
+        }
     }
     
+    // Update mask ( for split slider )
+    func updateMask(value: Float) {
+        
+        if let shapeLayer = self.layer?.mask as? CAShapeLayer {
+            let percent: CGFloat = CGFloat(value) / 100
+            let newWidth: CGFloat = percent * self.frame.width
+            var maskX: CGFloat = 0
+            
+            if self.videoIndex == 1 {
+               maskX = ((100 - CGFloat(value)) / 100) * self.frame.width
+            }
+            
+            shapeLayer.path = CGPathCreateWithRect(CGRectMake(maskX, 0, newWidth, self.frame.height), nil)
+        }
+        
+    }
     
     
     // PRIVATE FUNCTIONS
@@ -195,8 +219,7 @@ class VideoPlayer: NSView {
         self._player = player;
         
         let playerLayer : AVPlayerLayer = AVPlayerLayer(player: player)
-        
-        playerLayer.frame = CGRectMake(0, 0, 200, 400)
+        playerLayer.frame = CGRectMake(0, 0, self.frame.width, self.frame.height - 20)
         
         self.layer!.addSublayer(playerLayer)
         self._playerLayer = playerLayer
@@ -229,7 +252,7 @@ class VideoPlayer: NSView {
         title.bordered = false
         title.textColor = NSColor.blackColor()
         title.alignment = NSTextAlignment.Center
-        title.frame = CGRectMake(0, self.frame.height - 40.0, self.frame.width, 20.0)
+        title.frame = CGRectMake(0, self.frame.height - 20, self.frame.width, 20)
         self.addSubview(title)
         
     }
@@ -350,12 +373,14 @@ class VideoPlayer: NSView {
             self._player?.play()
             
             // Add periodic time observer
-            let interval : CMTime = CMTimeMake(1, 100)
-            self._player?.addPeriodicTimeObserverForInterval(interval, queue: nil, usingBlock: { (time: CMTime) -> Void in
-                
-                self.delegate?.videoPlayer(self, changedState: VideoPlayerState.Playing)
-                
-            })
+            if self.videoIndex == 0 {
+                let interval : CMTime = CMTimeMake(1, 100)
+                self._player?.addPeriodicTimeObserverForInterval(interval, queue: nil, usingBlock: { (time: CMTime) -> Void in
+                    
+                    self.delegate?.videoPlayer(self, changedState: VideoPlayerState.Playing)
+                    
+                })
+            }
             
         case VideoPlayerState.Stopped:
             

@@ -10,7 +10,6 @@ import Cocoa
 
 class DragAndDropController: NSViewController {
 
-//    var playerView: PlayerView?
     var dragAndDropZoneView: DragAndDropZone?
     
     var videos: Array<String> = []
@@ -32,8 +31,9 @@ class DragAndDropController: NSViewController {
         
         let destVC = segue.destinationController as! SideBySideComparisonController
         destVC.videos = self.videos
+        destVC.mode = segue.identifier == "SliderMode" ? QualityControlMode.Slider : QualityControlMode.SideBySide
         
-        destVC.performSegueWithIdentifier("initSideBySideComparison", sender: self)
+        destVC.performSegueWithIdentifier("SideBySideComparison", sender: self)
         
     }
     

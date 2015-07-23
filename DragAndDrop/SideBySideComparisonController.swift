@@ -9,89 +9,142 @@
 import Cocoa
 import QuartzCore
 
-class SideBySideComparisonController: NSViewController, TimelineControllerDelegate, VideoPlayerDelegate {
+enum QualityControlMode: Int {
 
-    var videoPlayer1: VideoPlayer?
-    var videoPlayer2: VideoPlayer?
+    case SideBySide = 1
+    case Slider
     
+}
+
+class SideBySideComparisonController: NSViewController, TimelineControllerDelegate, VideoPlayerDelegate, SplitSliderDelegate {
+
     @IBOutlet weak var timeline: Timeline?
     
+    var splitSlider: SplitSlider?
+    
+    var videoPlayers: Array = [VideoPlayer]()
     var videos: Array = [String]()
+    var mode: QualityControlMode = .Slider
     
     private var displayLink: CVDisplayLink?
     
     
+    // OVERRIDE
+    
     override func viewWillAppear() {
         self.initTimeline()
         self.initVideos()
+        
+        // split slider ?
+        if mode == QualityControlMode.Slider {
+            self.initSplitSlider()
+        }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
     }
     
-    internal func initVideos() {
-        
-        let videoWidth: CGFloat = self.view.frame.width / 2.0
-        let videoHeight: CGFloat = self.view.frame.height
-        
-        let videoFrame: CGRect = CGRectMake(0.0, self.view.frame.height - videoHeight, videoWidth, videoHeight)
-        let videoFrame2: CGRect = CGRectMake(videoWidth, self.view.frame.height - videoHeight, videoWidth, videoHeight)
-        
-        videoPlayer1 = VideoPlayer(frame: videoFrame)
-        videoPlayer1!.frame = videoFrame
-        videoPlayer1!.URL = NSURL.fileURLWithPath(self.videos[0])
-        videoPlayer1!.videoTitle = self.videos[0]
-        videoPlayer1!.delegate = self
-        videoPlayer1!.videoIndex = 0
-        videoPlayer1!.totalVideos = 2
-        videoPlayer1!.endAction = VideoPlayerEndAction.Stop
-        videoPlayer1!.build()
-        
-        videoPlayer2 = VideoPlayer(frame: videoFrame2)
-        videoPlayer2!.frame = videoFrame2
-        videoPlayer2!.URL = NSURL.fileURLWithPath(self.videos[1])
-        videoPlayer2!.videoTitle = self.videos[1]
-        videoPlayer2!.delegate = self
-        videoPlayer2!.videoIndex = 1
-        videoPlayer2!.totalVideos = 2
-        videoPlayer2!.endAction = VideoPlayerEndAction.Stop
-        videoPlayer2!.build()
-        
-        self.view.addSubview(self.videoPlayer1!)
-        self.view.addSubview(self.videoPlayer2!)
-        
+    
+    override func keyUp(evt: NSEvent) {
+        if evt.keyCode == 49 {
+            togglePlay()
+        }
     }
     
     
+    // PRIVATE FUNCTIONS
+    
+    // Init videos
+    internal func initVideos() {
+        
+        // Slider ?
+        let splitSliderHeight: CGFloat = mode == QualityControlMode.Slider ? 40 : 0
+        
+        let timelineHeight: CGFloat = timeline!.frame.height
+        var videoWidth: CGFloat = self.view.frame.width
+        let videoHeight: CGFloat = self.view.frame.height - timelineHeight - splitSliderHeight
+        var video2Pos: (x: CGFloat, y: CGFloat) = (0.0, timelineHeight)
+        
+        if mode == QualityControlMode.SideBySide {
+            videoWidth = self.view.frame.width / 2
+            video2Pos.x = videoWidth
+        }
+        
+        let videoFrame: CGRect = CGRectMake(0.0, video2Pos.y, videoWidth, videoHeight)
+        let videoFrame2: CGRect = CGRectMake(video2Pos.x, video2Pos.y, videoWidth, videoHeight)
+        
+        for var idx: Int = 0; idx < 2; ++idx {
+            
+            let playerFrame: CGRect = idx == 0 ? videoFrame : videoFrame2
+            let videoPlayer: VideoPlayer = VideoPlayer(frame: playerFrame)
+            videoPlayer.frame = playerFrame
+            videoPlayer.URL = NSURL.fileURLWithPath(self.videos[idx])
+            videoPlayer.videoTitle = self.videos[0]
+            videoPlayer.delegate = self
+            videoPlayer.videoIndex = idx
+            videoPlayer.totalVideos = 2
+            videoPlayer.endAction = VideoPlayerEndAction.Stop
+            videoPlayer.build(self.mode)
+            
+            self.view.addSubview(videoPlayer)
+            
+            videoPlayers.append(videoPlayer)
+        }
+        
+    }
+    
+    // Init timeline
     internal func initTimeline() {
         timeline?.delegate = self
     }
     
+    // Init split slider
+    internal func initSplitSlider() {
+        splitSlider = SplitSlider(frame: CGRectMake(0, self.view.frame.height - 30, self.view.frame.width, 20))
+        splitSlider?.delegate = self
+        self.view.addSubview(splitSlider!)
+    }
     
-    // Timeline protocol
+    
+    // Timeline Protocol
+    
+    func togglePlay() {
+        if (timeline?.isPlaying != nil) {
+            self.pause()
+        } else {
+            self.play()
+        }
+        
+        timeline?.pause(nil)
+    }
+    
     func pause() {
-        videoPlayer1?.pause(nil)
-        videoPlayer2?.pause(nil)
+        for videoPlayer: VideoPlayer in self.videoPlayers {
+            videoPlayer.pause(nil)
+        }
     }
     
     func play() {
-        videoPlayer1?.play(nil)
-        videoPlayer2?.play(nil)
+        for videoPlayer: VideoPlayer in self.videoPlayers {
+            videoPlayer.play(nil)
+        }
     }
     
     func volume(volume: Float) {
-        videoPlayer1?.volume = volume
-        videoPlayer2?.volume = volume
+        for videoPlayer: VideoPlayer in self.videoPlayers {
+            videoPlayer.volume = volume
+        }
     }
     
     func seek(time: Float64) {
-        videoPlayer1?.seek(time)
-        videoPlayer2?.seek(time)
+        for videoPlayer: VideoPlayer in self.videoPlayers {
+            videoPlayer.seek(time)
+        }
     }
     
     
-    // Videos protocol
+    // Videos Protocol
     
     // Video changed state
     func videoPlayer(videoPlayer: VideoPlayer, changedState: VideoPlayerState) {
@@ -119,6 +172,13 @@ class SideBySideComparisonController: NSViewController, TimelineControllerDelega
             
         }
         
+    }
+    
+    // Split Slider Protocol
+    func updateSplitSlider(value: Float) {
+        for videoPlayer: VideoPlayer in self.videoPlayers {
+            videoPlayer.updateMask(videoPlayer.videoIndex == 0 ? value : 100 - value)
+        }
     }
     
     // Video Error

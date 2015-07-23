@@ -48,13 +48,11 @@ class DragAndDropZone: NSView {
     }
     
     override func draggingUpdated(sender: NSDraggingInfo) -> NSDragOperation {
-        //drawBg()
         return self.fileTypeOk ? NSDragOperation.Copy : NSDragOperation.None
     }
     
     override func draggingExited(sender: NSDraggingInfo?) {
         self.fileTypeOk = false
-        //drawBg()
     }
 
     override func performDragOperation(sender: NSDraggingInfo) -> Bool {

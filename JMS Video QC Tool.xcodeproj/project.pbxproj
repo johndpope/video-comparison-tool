@@ -13,6 +13,7 @@
 		084F3AB61B597004003EB4AB /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 084F3AB51B597004003EB4AB /* Storyboard.storyboard */; };
 		084F3AF31B597734003EB4AB /* DragAndDropController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 084F3AF21B597734003EB4AB /* DragAndDropController.swift */; };
 		084F3AF71B59A89F003EB4AB /* VideoPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 084F3AF61B59A89F003EB4AB /* VideoPlayer.swift */; };
+		08E106901B605996001C9C6A /* SplitSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08E1068F1B605996001C9C6A /* SplitSlider.swift */; };
 		08F1389A1B55D85500DB3ABE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08F138991B55D85500DB3ABE /* AppDelegate.swift */; };
 		08F1389C1B55D85500DB3ABE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 08F1389B1B55D85500DB3ABE /* Assets.xcassets */; };
 		08F138AA1B55D85500DB3ABE /* DragAndDropTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08F138A91B55D85500DB3ABE /* DragAndDropTests.swift */; };
@@ -44,6 +45,7 @@
 		084F3AB51B597004003EB4AB /* Storyboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Storyboard.storyboard; sourceTree = "<group>"; };
 		084F3AF21B597734003EB4AB /* DragAndDropController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DragAndDropController.swift; sourceTree = "<group>"; };
 		084F3AF61B59A89F003EB4AB /* VideoPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoPlayer.swift; sourceTree = "<group>"; };
+		08E1068F1B605996001C9C6A /* SplitSlider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplitSlider.swift; sourceTree = "<group>"; };
 		08F138961B55D85500DB3ABE /* JMS Video QC Tool.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "JMS Video QC Tool.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		08F138991B55D85500DB3ABE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		08F1389B1B55D85500DB3ABE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -90,6 +92,7 @@
 				084F3AF21B597734003EB4AB /* DragAndDropController.swift */,
 				084F3AB51B597004003EB4AB /* Storyboard.storyboard */,
 				080AC3C01B5D9337000BD2E1 /* SideBySideComparisonController.swift */,
+				08E1068F1B605996001C9C6A /* SplitSlider.swift */,
 				084F3AF61B59A89F003EB4AB /* VideoPlayer.swift */,
 				080AC3C21B5DBD84000BD2E1 /* Timeline.swift */,
 				080AC3C61B5EE5FE000BD2E1 /* Utils.swift */,
@@ -286,6 +289,7 @@
 				080AC3C31B5DBD84000BD2E1 /* Timeline.swift in Sources */,
 				084F3AF71B59A89F003EB4AB /* VideoPlayer.swift in Sources */,
 				084F3AF31B597734003EB4AB /* DragAndDropController.swift in Sources */,
+				08E106901B605996001C9C6A /* SplitSlider.swift in Sources */,
 				08F138C31B55D8AD00DB3ABE /* DragAndDropZone.swift in Sources */,
 				08F1389A1B55D85500DB3ABE /* AppDelegate.swift in Sources */,
 				080AC3C11B5D9337000BD2E1 /* SideBySideComparisonController.swift in Sources */,
