@@ -669,7 +669,7 @@
             <objects>
                 <viewController title="Side By Side Comparison" id="pFe-RU-sMt" customClass="SideBySideComparisonController" customModule="JMS_Video_QC_Tool" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" wantsLayer="YES" id="6G3-yb-BSH">
-                        <rect key="frame" x="0.0" y="0.0" width="1400" height="800"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1400" height="600"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <customView id="Lx5-jN-bb6" customClass="Timeline" customModule="JMS_Video_QC_Tool" customModuleProvider="target">
@@ -684,7 +684,7 @@
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
                                         <connections>
-                                            <action selector="pause:" target="Lx5-jN-bb6" id="mBz-dB-aS9"/>
+                                            <action selector="togglePlay:" target="Lx5-jN-bb6" id="GLF-Wl-i5v"/>
                                         </connections>
                                     </button>
                                     <button verticalHuggingPriority="750" id="HiG-CI-zUf">

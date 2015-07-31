@@ -66,6 +66,20 @@ class VideoPlayer: NSView {
         }
     }
     
+    var videoRect: CGRect {
+        get {
+            return (self._playerLayer?.videoRect)!
+        }
+    }
+    
+    
+    var needsMasking: Bool {
+        get {
+            return self.videoIndex == 1
+        }
+    }
+    
+    
     // Video duration
     var videoDurationReadable : (minutes: Int64, seconds: Int64) {
         get {
@@ -122,8 +136,6 @@ class VideoPlayer: NSView {
         super.init(frame: frame)
         
         self.wantsLayer = true
-        self.canDrawSubviewsIntoLayer = true
-        
         self.needsDisplay = true
         
     }
@@ -171,35 +183,27 @@ class VideoPlayer: NSView {
     
     func build(mode: QualityControlMode = QualityControlMode.SideBySide) {
         self._setupPlayer()
-        self._showVideoTitle()
         
         // If slider mode
         if mode == QualityControlMode.Slider {
-            // Mask
-            self.layer!.mask = CAShapeLayer()
-            // Init mask frame
-            self.updateMask(50)
+            // Init mask if second video
+            if (self.needsMasking) {
+                self.layer!.mask = CAShapeLayer()
+            }
+        } else {
+            self._showVideoTitle()
         }
     }
+    
     
     // Update mask ( for split slider )
-    func updateMask(value: Float) {
-        
+    func updateMask(mask: CGRect) {
         if let shapeLayer = self.layer?.mask as? CAShapeLayer {
-            let percent: CGFloat = CGFloat(value) / 100
-            let newWidth: CGFloat = percent * self.frame.width
-            var maskX: CGFloat = 0
-            
-            if self.videoIndex == 1 {
-               maskX = ((100 - CGFloat(value)) / 100) * self.frame.width
-            }
-            
-            shapeLayer.path = CGPathCreateWithRect(CGRectMake(maskX, 0, newWidth, self.frame.height), nil)
+            shapeLayer.path = CGPathCreateWithRect(mask, nil)
         }
-        
     }
     
-    
+
     // PRIVATE FUNCTIONS
     
     // Setup Player
@@ -317,6 +321,7 @@ class VideoPlayer: NSView {
     
     override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
         let obj = object as? NSObject
+        
         if obj == self._player {
             
             if keyPath == "rate" {
@@ -347,6 +352,11 @@ class VideoPlayer: NSView {
                     self.delegate?.videoPlayer(self, encounteredError: NSError(domain: "VideoPlayer", code: 1, userInfo: [NSLocalizedDescriptionKey : "An unknown error occured."]))
                 } else if status == AVPlayerItemStatus.ReadyToPlay {
                     self._isLoaded = true
+                    
+                    // Init mask frame if needs masking
+                    if (self.needsMasking) {
+                        self.layer?.mask?.frame = self.videoRect
+                    }
                     
                     // Notify video loaded
                     self._setStateNotifyingDelegate(VideoPlayerState.Loaded)

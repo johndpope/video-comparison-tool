@@ -1,0 +1,3 @@
+[submodule "JMSRangeSlider"]
+	path = JMSRangeSlider
+	url = git@github.com:johnmcneilstudio/JMSRangeSlider.git

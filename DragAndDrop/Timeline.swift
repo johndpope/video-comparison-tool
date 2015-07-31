@@ -107,7 +107,7 @@ class Timeline: NSView {
     
     // ACTIONS
     
-    @IBAction func pause(sender: NSButton?) {
+    @IBAction func togglePlay(sender: NSButton?) {
         
         if _isPlaying {
             self.delegate?.pause()

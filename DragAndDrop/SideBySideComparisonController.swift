@@ -20,25 +20,30 @@ class SideBySideComparisonController: NSViewController, TimelineControllerDelega
 
     @IBOutlet weak var timeline: Timeline?
     
-    var splitSlider: SplitSlider?
+    var horizontalSplitSlider: JMSRangeSlider?
+    var verticalSplitSlider: JMSRangeSlider?
     
     var videoPlayers: Array = [VideoPlayer]()
     var videos: Array = [String]()
     var mode: QualityControlMode = .Slider
+    
+    var splitHorizontalValue: Float = 50
+    var splitVerticalValue: Float = 50
     
     private var displayLink: CVDisplayLink?
     
     
     // OVERRIDE
     
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+    }
+    
     override func viewWillAppear() {
         self.initTimeline()
-        self.initVideos()
         
-        // split slider ?
-        if mode == QualityControlMode.Slider {
-            self.initSplitSlider()
-        }
+        // Init videos
+        self.initVideos()
     }
     
     override func viewDidLoad() {
@@ -59,7 +64,7 @@ class SideBySideComparisonController: NSViewController, TimelineControllerDelega
     internal func initVideos() {
         
         // Slider ?
-        let splitSliderHeight: CGFloat = mode == QualityControlMode.Slider ? 40 : 0
+        let splitSliderHeight: CGFloat = mode == QualityControlMode.Slider ? 50 : 0
         
         let timelineHeight: CGFloat = timeline!.frame.height
         var videoWidth: CGFloat = self.view.frame.width
@@ -72,11 +77,10 @@ class SideBySideComparisonController: NSViewController, TimelineControllerDelega
         }
         
         let videoFrame: CGRect = CGRectMake(0.0, video2Pos.y, videoWidth, videoHeight)
-        let videoFrame2: CGRect = CGRectMake(video2Pos.x, video2Pos.y, videoWidth, videoHeight)
         
         for var idx: Int = 0; idx < 2; ++idx {
             
-            let playerFrame: CGRect = idx == 0 ? videoFrame : videoFrame2
+            let playerFrame: CGRect = videoFrame
             let videoPlayer: VideoPlayer = VideoPlayer(frame: playerFrame)
             videoPlayer.frame = playerFrame
             videoPlayer.URL = NSURL.fileURLWithPath(self.videos[idx])
@@ -99,13 +103,50 @@ class SideBySideComparisonController: NSViewController, TimelineControllerDelega
         timeline?.delegate = self
     }
     
-    // Init split slider
-    internal func initSplitSlider() {
-        splitSlider = SplitSlider(frame: CGRectMake(0, self.view.frame.height - 30, self.view.frame.width, 20))
-        splitSlider?.delegate = self
-        self.view.addSubview(splitSlider!)
+    // Init split sliders
+    internal func initSplitSliders() {
+    
+        let videoRect: CGRect = self.videoPlayers[0].videoRect
+        
+        // Vertical split slider
+        verticalSplitSlider = JMSRangeSlider(frame: CGRectMake(videoRect.origin.x - 20, self.view.frame.height - 50, videoRect.width + 40, 40))
+        verticalSplitSlider?.minValue = 0
+        verticalSplitSlider?.maxValue = Double(videoRect.width)
+        verticalSplitSlider?.lowerValue = 0
+        verticalSplitSlider?.upperValue = Double(videoRect.width)
+        verticalSplitSlider?.trackHighlightTintColor = NSColor(red: 0.4, green: 0.698, blue: 1.0, alpha: 1.0)
+        verticalSplitSlider?.action = "updateRange:"
+        verticalSplitSlider?.target = self
+        
+        // Horizontal split slider
+        horizontalSplitSlider = JMSRangeSlider(frame: CGRectMake(0, self.videoPlayers[0].frame.origin.y, 20, videoRect.height))
+        horizontalSplitSlider?.minValue = 0
+        horizontalSplitSlider?.maxValue = Double(videoRect.height)
+        horizontalSplitSlider?.lowerValue = 0
+        horizontalSplitSlider?.upperValue = Double(videoRect.height)
+        horizontalSplitSlider?.trackHighlightTintColor = NSColor(red: 0.4, green: 0.698, blue: 1.0, alpha: 1.0)
+        horizontalSplitSlider?.action = "updateRange:"
+        horizontalSplitSlider?.target = self
+        
+        self.view.addSubview(verticalSplitSlider!)
+        self.view.addSubview(horizontalSplitSlider!)
+        
+        // Update range
+        self.updateRange(nil)
     }
     
+    
+    // Update range
+    func updateRange(sender: AnyObject!) {
+        
+        let maskWidth: CGFloat = CGFloat((verticalSplitSlider?.upperValue)! - (verticalSplitSlider?.lowerValue)!)
+        let maskHeight: CGFloat = CGFloat((horizontalSplitSlider?.upperValue)! - (horizontalSplitSlider?.lowerValue)!)
+        
+        if let _videoPlayer: VideoPlayer = videoPlayers[1] {
+            _videoPlayer.updateMask(CGRectMake(CGFloat((verticalSplitSlider?.lowerValue)!), CGFloat((horizontalSplitSlider?.lowerValue)!), maskWidth, maskHeight))
+        }
+        
+    }
     
     // Timeline Protocol
     
@@ -116,7 +157,7 @@ class SideBySideComparisonController: NSViewController, TimelineControllerDelega
             self.play()
         }
         
-        timeline?.pause(nil)
+        timeline?.togglePlay(nil)
     }
     
     func pause() {
@@ -152,8 +193,15 @@ class SideBySideComparisonController: NSViewController, TimelineControllerDelega
         switch changedState {
             
         case .Loaded:
+            // Set up timeline
             self.timeline?.setDuration(videoPlayer.videoDurationReadable.minutes, seconds: videoPlayer.videoDurationReadable.seconds)
             self.timeline?.seekBarMaxValue = videoPlayer.videoDuration
+            
+            // Create split sliders if needed 
+            if mode == QualityControlMode.Slider {
+                self.initSplitSliders()
+            }
+            
             break
             
         case .Stopped:
@@ -172,13 +220,6 @@ class SideBySideComparisonController: NSViewController, TimelineControllerDelega
             
         }
         
-    }
-    
-    // Split Slider Protocol
-    func updateSplitSlider(value: Float) {
-        for videoPlayer: VideoPlayer in self.videoPlayers {
-            videoPlayer.updateMask(videoPlayer.videoIndex == 0 ? value : 100 - value)
-        }
     }
     
     // Video Error

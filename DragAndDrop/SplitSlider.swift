@@ -8,17 +8,23 @@
 
 import Cocoa
 
+enum SliderOrientation: Int {
+    
+    case Horizontal = 1
+    case Vertical
+    
+}
+
 protocol SplitSliderDelegate {
     
-    func updateSplitSlider(value: Float)
+//    func updateSplitSlider(orientation: SliderOrientation, value: Float)
     
 }
 
 class SplitSlider: NSSlider {
 
-    
     var delegate: SplitSliderDelegate?
-    
+    var orientation: SliderOrientation = .Horizontal
     
     // OVERRIDE
     
@@ -52,11 +58,11 @@ class SplitSlider: NSSlider {
             break
             
         case NSEventType.LeftMouseUp:
-            self.delegate?.updateSplitSlider((self.cell?.floatValue)!)
+//            self.delegate?.updateSplitSlider(self.orientation, value: (self.cell?.floatValue)!)
             break
             
         case NSEventType.LeftMouseDragged:
-            self.delegate?.updateSplitSlider((self.cell?.floatValue)!)
+//            self.delegate?.updateSplitSlider(self.orientation, value: (self.cell?.floatValue)!)
             break
             
         default:
