@@ -122,6 +122,7 @@ class SideBySideComparisonController: NSViewController, TimelineControllerDelega
         verticalSplitSlider?.maxValue = Double(videoRect.width)
         verticalSplitSlider?.lowerValue = 0
         verticalSplitSlider?.upperValue = Double(videoRect.width)
+        verticalSplitSlider?.cornerRadius = 0.0
         verticalSplitSlider?.trackHighlightTintColor = NSColor(red: 0.4, green: 0.698, blue: 1.0, alpha: 1.0)
         verticalSplitSlider?.action = "updateRange:"
         verticalSplitSlider?.target = self
@@ -139,6 +140,7 @@ class SideBySideComparisonController: NSViewController, TimelineControllerDelega
         horizontalSplitSlider?.maxValue = Double(videoRect.height)
         horizontalSplitSlider?.lowerValue = 0
         horizontalSplitSlider?.upperValue = Double(videoRect.height)
+        horizontalSplitSlider?.cornerRadius = 0.0
         horizontalSplitSlider?.trackHighlightTintColor = NSColor(red: 0.4, green: 0.698, blue: 1.0, alpha: 1.0)
         horizontalSplitSlider?.action = "updateRange:"
         horizontalSplitSlider?.target = self
