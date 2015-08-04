@@ -214,7 +214,9 @@ class SideBySideComparisonController: NSViewController, TimelineControllerDelega
             
             // Create split sliders if needed 
             if mode == QualityControlMode.Slider {
-                self.initSplitSliders()
+                if verticalSplitSlider == nil {
+                    self.initSplitSliders()
+                }
             }
             
             break
