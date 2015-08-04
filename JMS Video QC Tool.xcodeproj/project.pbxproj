@@ -10,58 +10,31 @@
 		080AC3C11B5D9337000BD2E1 /* SideBySideComparisonController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 080AC3C01B5D9337000BD2E1 /* SideBySideComparisonController.swift */; };
 		080AC3C31B5DBD84000BD2E1 /* Timeline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 080AC3C21B5DBD84000BD2E1 /* Timeline.swift */; };
 		080AC3C71B5EE5FE000BD2E1 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 080AC3C61B5EE5FE000BD2E1 /* Utils.swift */; };
-		084DA5A91B6AF59100955E76 /* JMSRangeSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 084DA5A81B6AF59100955E76 /* JMSRangeSlider.swift */; };
-		084DA5AB1B6AF5B000955E76 /* RangeSliderCellLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 084DA5AA1B6AF5B000955E76 /* RangeSliderCellLayer.swift */; };
-		084DA5AD1B6AF61300955E76 /* RangeSliderTrackLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 084DA5AC1B6AF61300955E76 /* RangeSliderTrackLayer.swift */; };
+		080D0E921B703EC300EB4596 /* JMSRangeSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 080D0E8F1B703EC300EB4596 /* JMSRangeSlider.swift */; };
+		080D0E931B703EC300EB4596 /* RangeSliderCellLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 080D0E901B703EC300EB4596 /* RangeSliderCellLayer.swift */; };
+		080D0E941B703EC300EB4596 /* RangeSliderTrackLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 080D0E911B703EC300EB4596 /* RangeSliderTrackLayer.swift */; };
 		084F3AB61B597004003EB4AB /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 084F3AB51B597004003EB4AB /* Storyboard.storyboard */; };
 		084F3AF31B597734003EB4AB /* DragAndDropController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 084F3AF21B597734003EB4AB /* DragAndDropController.swift */; };
 		084F3AF71B59A89F003EB4AB /* VideoPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 084F3AF61B59A89F003EB4AB /* VideoPlayer.swift */; };
-		08E106901B605996001C9C6A /* SplitSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08E1068F1B605996001C9C6A /* SplitSlider.swift */; };
 		08F1389A1B55D85500DB3ABE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08F138991B55D85500DB3ABE /* AppDelegate.swift */; };
 		08F1389C1B55D85500DB3ABE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 08F1389B1B55D85500DB3ABE /* Assets.xcassets */; };
-		08F138AA1B55D85500DB3ABE /* DragAndDropTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08F138A91B55D85500DB3ABE /* DragAndDropTests.swift */; };
-		08F138B51B55D85500DB3ABE /* DragAndDropUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08F138B41B55D85500DB3ABE /* DragAndDropUITests.swift */; };
 		08F138C31B55D8AD00DB3ABE /* DragAndDropZone.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08F138C21B55D8AD00DB3ABE /* DragAndDropZone.swift */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		08F138A61B55D85500DB3ABE /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 08F1388E1B55D85500DB3ABE /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 08F138951B55D85500DB3ABE;
-			remoteInfo = DragAndDrop;
-		};
-		08F138B11B55D85500DB3ABE /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 08F1388E1B55D85500DB3ABE /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 08F138951B55D85500DB3ABE;
-			remoteInfo = DragAndDrop;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		080AC3C01B5D9337000BD2E1 /* SideBySideComparisonController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideBySideComparisonController.swift; sourceTree = "<group>"; };
 		080AC3C21B5DBD84000BD2E1 /* Timeline.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Timeline.swift; sourceTree = "<group>"; };
 		080AC3C61B5EE5FE000BD2E1 /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
-		084DA5A81B6AF59100955E76 /* JMSRangeSlider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JMSRangeSlider.swift; sourceTree = "<group>"; };
-		084DA5AA1B6AF5B000955E76 /* RangeSliderCellLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RangeSliderCellLayer.swift; sourceTree = "<group>"; };
-		084DA5AC1B6AF61300955E76 /* RangeSliderTrackLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RangeSliderTrackLayer.swift; sourceTree = "<group>"; };
+		080D0E8F1B703EC300EB4596 /* JMSRangeSlider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JMSRangeSlider.swift; sourceTree = "<group>"; };
+		080D0E901B703EC300EB4596 /* RangeSliderCellLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RangeSliderCellLayer.swift; sourceTree = "<group>"; };
+		080D0E911B703EC300EB4596 /* RangeSliderTrackLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RangeSliderTrackLayer.swift; sourceTree = "<group>"; };
 		084F3AB51B597004003EB4AB /* Storyboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Storyboard.storyboard; sourceTree = "<group>"; };
 		084F3AF21B597734003EB4AB /* DragAndDropController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DragAndDropController.swift; sourceTree = "<group>"; };
 		084F3AF61B59A89F003EB4AB /* VideoPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoPlayer.swift; sourceTree = "<group>"; };
-		08E1068F1B605996001C9C6A /* SplitSlider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplitSlider.swift; sourceTree = "<group>"; };
 		08F138961B55D85500DB3ABE /* JMS Video QC Tool.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "JMS Video QC Tool.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		08F138991B55D85500DB3ABE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		08F1389B1B55D85500DB3ABE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		08F138A01B55D85500DB3ABE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		08F138A51B55D85500DB3ABE /* JMS Video QC Tool.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "JMS Video QC Tool.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		08F138A91B55D85500DB3ABE /* DragAndDropTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DragAndDropTests.swift; sourceTree = "<group>"; };
-		08F138AB1B55D85500DB3ABE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		08F138B01B55D85500DB3ABE /* JMS Video QC Tool.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "JMS Video QC Tool.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		08F138B41B55D85500DB3ABE /* DragAndDropUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DragAndDropUITests.swift; sourceTree = "<group>"; };
-		08F138B61B55D85500DB3ABE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		08F138C21B55D8AD00DB3ABE /* DragAndDropZone.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DragAndDropZone.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -73,32 +46,18 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		08F138A21B55D85500DB3ABE /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		08F138AD1B55D85500DB3ABE /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		084DA5A71B6AF56000955E76 /* JMSRangeSlider */ = {
+		080D0E8E1B703EC300EB4596 /* JMSRangeSlider */ = {
 			isa = PBXGroup;
 			children = (
-				084DA5A81B6AF59100955E76 /* JMSRangeSlider.swift */,
-				084DA5AA1B6AF5B000955E76 /* RangeSliderCellLayer.swift */,
-				084DA5AC1B6AF61300955E76 /* RangeSliderTrackLayer.swift */,
+				080D0E8F1B703EC300EB4596 /* JMSRangeSlider.swift */,
+				080D0E901B703EC300EB4596 /* RangeSliderCellLayer.swift */,
+				080D0E911B703EC300EB4596 /* RangeSliderTrackLayer.swift */,
 			);
-			name = JMSRangeSlider;
-			sourceTree = "<group>";
+			path = JMSRangeSlider;
+			sourceTree = SOURCE_ROOT;
 		};
 		084F3AAB1B585C35003EB4AB /* GUI */ = {
 			isa = PBXGroup;
@@ -108,7 +67,6 @@
 				084F3AF21B597734003EB4AB /* DragAndDropController.swift */,
 				084F3AB51B597004003EB4AB /* Storyboard.storyboard */,
 				080AC3C01B5D9337000BD2E1 /* SideBySideComparisonController.swift */,
-				08E1068F1B605996001C9C6A /* SplitSlider.swift */,
 				084F3AF61B59A89F003EB4AB /* VideoPlayer.swift */,
 				080AC3C21B5DBD84000BD2E1 /* Timeline.swift */,
 				080AC3C61B5EE5FE000BD2E1 /* Utils.swift */,
@@ -120,8 +78,6 @@
 			isa = PBXGroup;
 			children = (
 				08F138981B55D85500DB3ABE /* JMS Video QC Tool */,
-				08F138A81B55D85500DB3ABE /* DragAndDropTests */,
-				08F138B31B55D85500DB3ABE /* DragAndDropUITests */,
 				08F138971B55D85500DB3ABE /* Products */,
 			);
 			sourceTree = "<group>";
@@ -130,8 +86,6 @@
 			isa = PBXGroup;
 			children = (
 				08F138961B55D85500DB3ABE /* JMS Video QC Tool.app */,
-				08F138A51B55D85500DB3ABE /* JMS Video QC Tool.xctest */,
-				08F138B01B55D85500DB3ABE /* JMS Video QC Tool.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -139,31 +93,13 @@
 		08F138981B55D85500DB3ABE /* JMS Video QC Tool */ = {
 			isa = PBXGroup;
 			children = (
-				084DA5A71B6AF56000955E76 /* JMSRangeSlider */,
+				080D0E8E1B703EC300EB4596 /* JMSRangeSlider */,
 				084F3AAB1B585C35003EB4AB /* GUI */,
 				08F1389B1B55D85500DB3ABE /* Assets.xcassets */,
 				08F138A01B55D85500DB3ABE /* Info.plist */,
 			);
 			name = "JMS Video QC Tool";
 			path = DragAndDrop;
-			sourceTree = "<group>";
-		};
-		08F138A81B55D85500DB3ABE /* DragAndDropTests */ = {
-			isa = PBXGroup;
-			children = (
-				08F138A91B55D85500DB3ABE /* DragAndDropTests.swift */,
-				08F138AB1B55D85500DB3ABE /* Info.plist */,
-			);
-			path = DragAndDropTests;
-			sourceTree = "<group>";
-		};
-		08F138B31B55D85500DB3ABE /* DragAndDropUITests */ = {
-			isa = PBXGroup;
-			children = (
-				08F138B41B55D85500DB3ABE /* DragAndDropUITests.swift */,
-				08F138B61B55D85500DB3ABE /* Info.plist */,
-			);
-			path = DragAndDropUITests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -186,42 +122,6 @@
 			productReference = 08F138961B55D85500DB3ABE /* JMS Video QC Tool.app */;
 			productType = "com.apple.product-type.application";
 		};
-		08F138A41B55D85500DB3ABE /* JMS Video QC ToolTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 08F138BC1B55D85500DB3ABE /* Build configuration list for PBXNativeTarget "JMS Video QC ToolTests" */;
-			buildPhases = (
-				08F138A11B55D85500DB3ABE /* Sources */,
-				08F138A21B55D85500DB3ABE /* Frameworks */,
-				08F138A31B55D85500DB3ABE /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				08F138A71B55D85500DB3ABE /* PBXTargetDependency */,
-			);
-			name = "JMS Video QC ToolTests";
-			productName = DragAndDropTests;
-			productReference = 08F138A51B55D85500DB3ABE /* JMS Video QC Tool.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		08F138AF1B55D85500DB3ABE /* JMS Video QC ToolUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 08F138BF1B55D85500DB3ABE /* Build configuration list for PBXNativeTarget "JMS Video QC ToolUITests" */;
-			buildPhases = (
-				08F138AC1B55D85500DB3ABE /* Sources */,
-				08F138AD1B55D85500DB3ABE /* Frameworks */,
-				08F138AE1B55D85500DB3ABE /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				08F138B21B55D85500DB3ABE /* PBXTargetDependency */,
-			);
-			name = "JMS Video QC ToolUITests";
-			productName = DragAndDropUITests;
-			productReference = 08F138B01B55D85500DB3ABE /* JMS Video QC Tool.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -233,14 +133,6 @@
 				TargetAttributes = {
 					08F138951B55D85500DB3ABE = {
 						CreatedOnToolsVersion = 7.0;
-					};
-					08F138A41B55D85500DB3ABE = {
-						CreatedOnToolsVersion = 7.0;
-						TestTargetID = 08F138951B55D85500DB3ABE;
-					};
-					08F138AF1B55D85500DB3ABE = {
-						CreatedOnToolsVersion = 7.0;
-						TestTargetID = 08F138951B55D85500DB3ABE;
 					};
 				};
 			};
@@ -258,8 +150,6 @@
 			projectRoot = "";
 			targets = (
 				08F138951B55D85500DB3ABE /* JMS Video QC Tool */,
-				08F138A41B55D85500DB3ABE /* JMS Video QC ToolTests */,
-				08F138AF1B55D85500DB3ABE /* JMS Video QC ToolUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -274,20 +164,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		08F138A31B55D85500DB3ABE /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		08F138AE1B55D85500DB3ABE /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -297,48 +173,18 @@
 			files = (
 				080AC3C31B5DBD84000BD2E1 /* Timeline.swift in Sources */,
 				084F3AF71B59A89F003EB4AB /* VideoPlayer.swift in Sources */,
-				084DA5A91B6AF59100955E76 /* JMSRangeSlider.swift in Sources */,
+				080D0E921B703EC300EB4596 /* JMSRangeSlider.swift in Sources */,
 				084F3AF31B597734003EB4AB /* DragAndDropController.swift in Sources */,
-				08E106901B605996001C9C6A /* SplitSlider.swift in Sources */,
 				08F138C31B55D8AD00DB3ABE /* DragAndDropZone.swift in Sources */,
-				084DA5AB1B6AF5B000955E76 /* RangeSliderCellLayer.swift in Sources */,
+				080D0E931B703EC300EB4596 /* RangeSliderCellLayer.swift in Sources */,
 				08F1389A1B55D85500DB3ABE /* AppDelegate.swift in Sources */,
 				080AC3C11B5D9337000BD2E1 /* SideBySideComparisonController.swift in Sources */,
-				084DA5AD1B6AF61300955E76 /* RangeSliderTrackLayer.swift in Sources */,
+				080D0E941B703EC300EB4596 /* RangeSliderTrackLayer.swift in Sources */,
 				080AC3C71B5EE5FE000BD2E1 /* Utils.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		08F138A11B55D85500DB3ABE /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				08F138AA1B55D85500DB3ABE /* DragAndDropTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		08F138AC1B55D85500DB3ABE /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				08F138B51B55D85500DB3ABE /* DragAndDropUITests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		08F138A71B55D85500DB3ABE /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 08F138951B55D85500DB3ABE /* JMS Video QC Tool */;
-			targetProxy = 08F138A61B55D85500DB3ABE /* PBXContainerItemProxy */;
-		};
-		08F138B21B55D85500DB3ABE /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 08F138951B55D85500DB3ABE /* JMS Video QC Tool */;
-			targetProxy = 08F138B11B55D85500DB3ABE /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		08F138B71B55D85500DB3ABE /* Debug */ = {
@@ -445,58 +291,6 @@
 			};
 			name = Release;
 		};
-		08F138BD1B55D85500DB3ABE /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = DragAndDropTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.jms.DragAndDropTests;
-				PRODUCT_NAME = "JMS Video QC Tool";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/JMS Video QC Tool.app/Contents/MacOS/JMS Video QC Tool";
-			};
-			name = Debug;
-		};
-		08F138BE1B55D85500DB3ABE /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = DragAndDropTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.jms.DragAndDropTests;
-				PRODUCT_NAME = "JMS Video QC Tool";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/JMS Video QC Tool.app/Contents/MacOS/JMS Video QC Tool";
-			};
-			name = Release;
-		};
-		08F138C01B55D85500DB3ABE /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = DragAndDropUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.jms.DragAndDropUITests;
-				PRODUCT_NAME = "JMS Video QC Tool";
-				TEST_TARGET_NAME = DragAndDrop;
-				USES_XCTRUNNER = YES;
-			};
-			name = Debug;
-		};
-		08F138C11B55D85500DB3ABE /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = DragAndDropUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.jms.DragAndDropUITests;
-				PRODUCT_NAME = "JMS Video QC Tool";
-				TEST_TARGET_NAME = DragAndDrop;
-				USES_XCTRUNNER = YES;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -514,24 +308,6 @@
 			buildConfigurations = (
 				08F138BA1B55D85500DB3ABE /* Debug */,
 				08F138BB1B55D85500DB3ABE /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		08F138BC1B55D85500DB3ABE /* Build configuration list for PBXNativeTarget "JMS Video QC ToolTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				08F138BD1B55D85500DB3ABE /* Debug */,
-				08F138BE1B55D85500DB3ABE /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		08F138BF1B55D85500DB3ABE /* Build configuration list for PBXNativeTarget "JMS Video QC ToolUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				08F138C01B55D85500DB3ABE /* Debug */,
-				08F138C11B55D85500DB3ABE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

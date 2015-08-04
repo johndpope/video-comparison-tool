@@ -223,7 +223,7 @@ class VideoPlayer: NSView {
         self._player = player;
         
         let playerLayer : AVPlayerLayer = AVPlayerLayer(player: player)
-        playerLayer.frame = CGRectMake(0, 0, self.frame.width, self.frame.height - 20)
+        playerLayer.frame = CGRectMake(0, 0, self.frame.width, self.frame.height)
         
         self.layer!.addSublayer(playerLayer)
         self._playerLayer = playerLayer
