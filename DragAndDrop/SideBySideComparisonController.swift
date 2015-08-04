@@ -64,12 +64,12 @@ class SideBySideComparisonController: NSViewController, TimelineControllerDelega
     internal func initVideos() {
         
         // Slider ?
-        let splitSliderHeight: CGFloat = mode == QualityControlMode.Slider ? 60 : 0
+        let splitSliderHeight: CGFloat = mode == QualityControlMode.Slider ? 80 : 0
         
         let timelineHeight: CGFloat = timeline!.frame.height
         var videoWidth: CGFloat = self.view.frame.width
         let videoHeight: CGFloat = self.view.frame.height - timelineHeight - splitSliderHeight
-        var video2Pos: (x: CGFloat, y: CGFloat) = (0.0, timelineHeight)
+        var video2Pos: (x: CGFloat, y: CGFloat) = (0.0, timelineHeight + splitSliderHeight/3)
         
         if mode == QualityControlMode.SideBySide {
             videoWidth = self.view.frame.width / 2
@@ -108,15 +108,14 @@ class SideBySideComparisonController: NSViewController, TimelineControllerDelega
     
         let videoRect: CGRect = self.videoPlayers[0].videoRect
         
-        let marginElements: CGFloat = 10
+        let marginElements: CGFloat = 5
         var cellWidth: CGFloat = 20
         var cellHeight: CGFloat = 30
         let trackThickness: CGFloat = 10
         
         // Vertical split slider
         verticalSplitSlider = JMSRangeSlider()
-        verticalSplitSlider?.layer?.backgroundColor = CGColorCreateGenericRGB(0, 0, 0, 1)
-        verticalSplitSlider?.frame = CGRectMake(videoRect.origin.x - cellWidth, self.videoPlayers[0].frame.origin.y + self.videoPlayers[0].frame.height, videoRect.width + 2 * cellWidth, 2 * cellHeight + trackThickness)
+        verticalSplitSlider?.frame = CGRectMake(videoRect.origin.x - cellWidth, self.videoPlayers[0].frame.origin.y + self.videoPlayers[0].frame.height + marginElements, videoRect.width + 2 * cellWidth, 2 * cellHeight + trackThickness)
         verticalSplitSlider?.cellWidth = cellWidth
         verticalSplitSlider?.cellHeight = cellHeight
         verticalSplitSlider?.trackThickness = trackThickness
